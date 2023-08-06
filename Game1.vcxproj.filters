@@ -15,16 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TileMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TileMapAStar.cpp">
+    <ClCompile Include="ReferenceTables.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TileMapIO.cpp">
+    <ClCompile Include="IO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AStar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StringConversions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,16 +38,22 @@
     <ClInclude Include="TileMap.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="TileMapGenerator.h">
+    <ClInclude Include="ReferenceTables.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="TileMapObjects.h">
+    <ClInclude Include="MapData.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="TileMapAStar.h">
+    <ClInclude Include="Tile.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="TileMapIO.h">
+    <ClInclude Include="StringConversions.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IO.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AStar.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

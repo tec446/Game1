@@ -1,4 +1,8 @@
-#include "TileMap.h"
+# pragma once
+
+
+
+// Everything needs Basics
 
 namespace TileMap
 {

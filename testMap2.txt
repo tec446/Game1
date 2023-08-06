@@ -1,6 +1,5 @@
 radius:2
 tileShape:Square
-tileOrientation:Square
  .  .  .  .  . 
  .  x  x  x  .
  .  x  .  x  .
