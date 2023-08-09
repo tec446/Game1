@@ -1,0 +1,7 @@
+radius:2
+tileShape:Hexagon
+      .     .     .
+   .     .     .     .
+.     .     x     .     .
+   .     .     .     .
+      .     .     .

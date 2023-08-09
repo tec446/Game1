@@ -13,7 +13,7 @@
 #include "MapData.h"
 #include "ReferenceTables.h"
 //temporary
-//#include "StringConversions.h"
+#include "StringConversions.h"
 //temporary
 
 

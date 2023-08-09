@@ -12,10 +12,12 @@ namespace TileMap
         std::vector<Coordinates>& path // path to be returned
     )
     {
-        if (!mapData.validReferences()) { throw std::invalid_argument("invalid argument in findPath" ); }
-
         using AStarPriorityQueue = std::priority_queue<PathNode, std::vector<PathNode>, CompareNodeCost>;
         using AStarClosedSet     = std::unordered_set <PathNode, PathNodeHash, PathNodeEqual>;
+
+        if (!mapData.validReferences() )       throw std::runtime_error("Invalid references in findPath" ); 
+        if (!mapData.isWalkable(start) )       throw std::runtime_error("invalid start in findPath");
+        if (!mapData.isWalkable(destination) ) throw std::runtime_error("invalid destination in findPath");
 
         AStarPriorityQueue openList;   // tracks cost
         AStarClosedSet     closedList; // tracks visited nodes

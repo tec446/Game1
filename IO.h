@@ -23,9 +23,11 @@ namespace TileMap
 
     // loadTileMap // Loads from a txt file
     std::optional<MapData> loadMap(const std::string& fileName);
+    std::optional<MapData> loadHexagonMap(const std::string& fileName);
     // saveTileMap // Saves to   a txt file
     bool saveMap(const MapData& mapData, const std::string& fileName);
 
     void printMap(const MapData& mapData, const std::vector<Coordinates>& path = {});
     void printSquareMap(const MapData& mapData, const std::vector<Coordinates>& path = {});
+    void printHexagonMap(const MapData& mapData, const std::vector<Coordinates>& path = {});
 }

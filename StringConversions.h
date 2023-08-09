@@ -17,17 +17,8 @@ namespace TileMap
 			case TileShape::Square:
 				os << "Square";
 				break;
-			case TileShape::HexagonNS:
-				os << "HexagonNS";
-				break;
-			case TileShape::HexagonEW:
-				os << "HexagonEW";
-				break;
-			case TileShape::TriangleStandard:
-				os << "TriangleStandard";
-				break;
-			case TileShape::TriangleInverted:
-				os << "TriangleInverted";
+			case TileShape::Hexagon:
+				os << "Hexagon";
 				break;
 			default:
 				os << "Unknown Shape!";

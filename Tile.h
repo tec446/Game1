@@ -24,10 +24,7 @@ namespace TileMap
 	enum TileShape
 	{
 		Square,
-		HexagonNS,
-		HexagonEW,
-		TriangleStandard,
-		TriangleInverted,
+		Hexagon,
 		TileShape_None,
 	};
 
@@ -86,5 +83,12 @@ namespace TileMap
 		Tile() = default;
 		Tile(const Coordinates coordinates, Landscape landscape)
 			: coordinates(coordinates), uniqueID(HashCoordinates()(coordinates)), landscape(landscape) {}
+		Tile& operator=(const Tile& other) {
+			if (this != &other) {
+				landscape = other.landscape;
+			}
+			return *this;
+		}
+
 	};
 }
