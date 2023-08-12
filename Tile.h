@@ -24,7 +24,7 @@ namespace TileMap
 	enum TileShape
 	{
 		Square,
-		Hexagon,
+		Hex,
 		TileShape_None,
 	};
 
@@ -42,6 +42,10 @@ namespace TileMap
 		{
 			return(Coordinates(x + other.x, y + other.y));
 		} // ^ operator + ^
+		Coordinates operator-(const Coordinates& other) const
+		{
+			return(Coordinates(x - other.x, y - other.y));
+		} // ^ operator - ^
 		bool operator==(const Coordinates& other) const
 		{
 			return (x == other.x && y == other.y);

@@ -5,7 +5,7 @@ namespace TileMap
 	const enum TileShape stringToTileShape(const std::string& stringShape)
 	{
 		if (stringShape == "Square") { return(TileShape::Square); }
-		if (stringShape == "Hexagon") { return(TileShape::Hexagon); }
+		if (stringShape == "Hex") { return(TileShape::Hex); }
 		else
 		{
 		

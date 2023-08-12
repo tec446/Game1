@@ -110,62 +110,62 @@ namespace TileMap
     };
     //////////////////////// - Square - ////////////////////////////////////
 #pragma endregion
-#pragma region Hexagon
-    ////////////////////////// - Hexagon - /////////////////////////////////
-    // Coordinate offsets for each direction on a Hexagon map
-    static const Coordinates HexagonCoordinatesNorthWest { +0, -1 };
-    static const Coordinates HexagonCoordinatesNorthEast { +1, -1 };
-    static const Coordinates HexagonCoordinatesEast      { +1, +0 };
-    static const Coordinates HexagonCoordinatesSouthEast { +0, +1 };
-    static const Coordinates HexagonCoordinatesSouthWest { -1, +1 };
-    static const Coordinates HexagonCoordinatesWest      { -1, +0 };
+#pragma region Hex
+    ////////////////////////// - Hex - /////////////////////////////////
+    // Coordinate offsets for each direction on a Hex map
+    static const Coordinates HexCoordinatesNorthWest { +0, -1 };
+    static const Coordinates HexCoordinatesNorthEast { +1, -1 };
+    static const Coordinates HexCoordinatesEast      { +1, +0 };
+    static const Coordinates HexCoordinatesSouthEast { +0, +1 };
+    static const Coordinates HexCoordinatesSouthWest { -1, +1 };
+    static const Coordinates HexCoordinatesWest      { -1, +0 };
     // Direction paired with their Offset
-    static const std::pair<Direction, Coordinates> HexagonNorthWest {NorthWest, HexagonCoordinatesNorthWest};
-    static const std::pair<Direction, Coordinates> HexagonNorthEast {NorthEast, HexagonCoordinatesNorthEast};
-    static const std::pair<Direction, Coordinates> HexagonEast      {East,      HexagonCoordinatesEast};
-    static const std::pair<Direction, Coordinates> HexagonSouthEast {SouthEast, HexagonCoordinatesSouthEast};
-    static const std::pair<Direction, Coordinates> HexagonSouthWest {SouthWest, HexagonCoordinatesSouthWest};
-    static const std::pair<Direction, Coordinates> HexagonWest      {West,      HexagonCoordinatesWest};
+    static const std::pair<Direction, Coordinates> HexNorthWest {NorthWest, HexCoordinatesNorthWest};
+    static const std::pair<Direction, Coordinates> HexNorthEast {NorthEast, HexCoordinatesNorthEast};
+    static const std::pair<Direction, Coordinates> HexEast      {East,      HexCoordinatesEast};
+    static const std::pair<Direction, Coordinates> HexSouthEast {SouthEast, HexCoordinatesSouthEast};
+    static const std::pair<Direction, Coordinates> HexSouthWest {SouthWest, HexCoordinatesSouthWest};
+    static const std::pair<Direction, Coordinates> HexWest      {West,      HexCoordinatesWest};
     // Container of all directions and their offsets
-    static const DirectionTable HexagonDirectionTable
+    static const DirectionTable HexDirectionTable
     {
-        HexagonNorthWest,
-        HexagonNorthEast,
-        HexagonEast,
-        HexagonSouthWest,
-        HexagonSouthEast,
-        HexagonWest
+        HexNorthWest,
+        HexNorthEast,
+        HexEast,
+        HexSouthWest,
+        HexSouthEast,
+        HexWest
     };
     // Single Direction to single Coordinates
-    static const OffsetMap HexagonDirectionToCoordinatesMap
+    static const OffsetMap HexDirectionToCoordinatesMap
     {
-        { NorthWest, HexagonCoordinatesNorthWest },
-        { NorthEast, HexagonCoordinatesNorthEast },
-        { East,      HexagonCoordinatesEast      },
-        { SouthEast, HexagonCoordinatesSouthEast },
-        { SouthWest, HexagonCoordinatesSouthWest },
-        { West,      HexagonCoordinatesWest      }
+        { NorthWest, HexCoordinatesNorthWest },
+        { NorthEast, HexCoordinatesNorthEast },
+        { East,      HexCoordinatesEast      },
+        { SouthEast, HexCoordinatesSouthEast },
+        { SouthWest, HexCoordinatesSouthWest },
+        { West,      HexCoordinatesWest      }
     };
     // Single Coordinates to single Direction
-    static const DirectionMap HexagonCoordinatesToactiveDirections
+    static const DirectionMap HexCoordinatesToactiveDirections
     {
-        { HexagonCoordinatesNorthWest, NorthWest },
-        { HexagonCoordinatesNorthEast, NorthEast },
-        { HexagonCoordinatesEast,      East },
-        { HexagonCoordinatesSouthEast, SouthEast },
-        { HexagonCoordinatesSouthWest, SouthWest },
-        { HexagonCoordinatesWest,      West }
+        { HexCoordinatesNorthWest, NorthWest },
+        { HexCoordinatesNorthEast, NorthEast },
+        { HexCoordinatesEast,      East },
+        { HexCoordinatesSouthEast, SouthEast },
+        { HexCoordinatesSouthWest, SouthWest },
+        { HexCoordinatesWest,      West }
     };
     // Novelty map contains all tiles which were previously non-adjacent before a one tile movement in a Direction
-    static const NoveltyMap HexagonNoveltyMap
+    static const NoveltyMap HexNoveltyMap
     {
-        { NorthWest, { HexagonWest, HexagonNorthWest, HexagonNorthEast } },
-        { NorthEast, { HexagonNorthWest, HexagonNorthEast, HexagonEast } },
-        { East,      { HexagonNorthEast, HexagonEast, HexagonSouthEast } },
-        { SouthEast, { HexagonEast, HexagonSouthEast, HexagonSouthWest } },
-        { SouthWest, { HexagonSouthEast, HexagonSouthWest, HexagonWest } },
-        { West,      { HexagonSouthWest, HexagonWest, HexagonNorthWest } }
+        { NorthWest, { HexWest, HexNorthWest, HexNorthEast } },
+        { NorthEast, { HexNorthWest, HexNorthEast, HexEast } },
+        { East,      { HexNorthEast, HexEast, HexSouthEast } },
+        { SouthEast, { HexEast, HexSouthEast, HexSouthWest } },
+        { SouthWest, { HexSouthEast, HexSouthWest, HexWest } },
+        { West,      { HexSouthWest, HexWest, HexNorthWest } }
     };
-    ////////////////////////// - Hexagon - /////////////////////////////////
+    ////////////////////////// - Hex - /////////////////////////////////
 #pragma endregion
 }

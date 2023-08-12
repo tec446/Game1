@@ -14,11 +14,11 @@ namespace TileMap
             activeOffset     = &SquareDirectionToCoordinatesMap;
             activeDirections = &SquareCoordinatesToactiveDirections;
             return true;
-        case Hexagon:
-            directionTable   = &HexagonDirectionTable;
-			noveltyMap       = &HexagonNoveltyMap;
-			activeOffset     = &HexagonDirectionToCoordinatesMap;
-			activeDirections = &HexagonCoordinatesToactiveDirections;
+        case Hex:
+            directionTable   = &HexDirectionTable;
+			noveltyMap       = &HexNoveltyMap;
+			activeOffset     = &HexDirectionToCoordinatesMap;
+			activeDirections = &HexCoordinatesToactiveDirections;
 			return true;
         default:
             throw std::runtime_error("Invalid TileShape!");
@@ -31,7 +31,7 @@ namespace TileMap
         switch (tileShape)
         {
         case Square:  return SquareDirectionToCoordinatesMap.at(direction);
-        case Hexagon: return HexagonDirectionToCoordinatesMap.at(direction);
+        case Hex: return HexDirectionToCoordinatesMap.at(direction);
         default:      throw std::runtime_error("Invalid TileShape!");
         }
     } // getDirection single Coordinates to single Direction
@@ -40,7 +40,7 @@ namespace TileMap
         switch (tileShape)
         {
         case Square:  return SquareCoordinatesToactiveDirections.at(coordinates);
-        case Hexagon: return HexagonCoordinatesToactiveDirections.at(coordinates);
+        case Hex: return HexCoordinatesToactiveDirections.at(coordinates);
         default:      throw std::runtime_error("Invalid TileShape!");
         }
     } // getDirection

@@ -1,5 +1,5 @@
-radius:2
 tileShape:Square
+radius:2
  .  .  .  .  . 
  .  x  x  x  .
  .  x  .  x  .

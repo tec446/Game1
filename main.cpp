@@ -9,39 +9,50 @@
 
 int main()
 {
+#pragma region squareMap
+	{
+		TileMap::TileMap tileMap{};
+
+		tileMap.m_activeMapData = TileMap::loadMap("square_testMap1");
+
+		if (tileMap.m_activeMapData == nullptr) { throw std::runtime_error("Error failed to load map!"); }
+
+		std::cout << "Map loaded successfully!" << std::endl;
+
+		const auto& mapData = *tileMap.m_activeMapData;
+		const auto& map = tileMap.m_activeMapData->getMap();
+
+		std::vector<TileMap::Coordinates> path{};
+		TileMap::AStar::findPath({ -15,15 }, { 15,15 }, mapData, path);
+		for (const auto& coord : path)
+		{
+			std::cout << "\nPath: " << coord;
+		}
+		TileMap::printMap(mapData, path);
+	}
+#pragma endregion
+#pragma region squareMap
+	{
 	TileMap::TileMap tileMap{};
 
+	tileMap.m_activeMapData = TileMap::loadMap("hex_testMap1");
 
-	//const auto opt = TileMap::loadMap("testMap1");
-	const auto opt = TileMap::loadHexagonMap("hexagon_testMap1");
+	if (tileMap.m_activeMapData == nullptr) { throw std::runtime_error("Error failed to load map!"); }
 
-	if (!opt.has_value())
-	{
-		throw std::runtime_error("Error failed to load map!");
-	}
-
-	if (tileMap.m_activeMapData == nullptr)
-	{
-		tileMap.m_activeMapData = std::make_unique<TileMap::MapData>();
-	}
-
-	*(tileMap.m_activeMapData) = opt.value();
 	std::cout << "Map loaded successfully!" << std::endl;
 
-	tileMap.m_activeMapData->setActiveReferenceMaps();
+	const auto& mapData = *tileMap.m_activeMapData;
+	const auto& map = tileMap.m_activeMapData->getMap();
 
-
-	const auto mapData = *(tileMap.m_activeMapData);
-	const auto map     = &mapData.map;
-	
 	std::vector<TileMap::Coordinates> path{};
-	TileMap::AStar::findPath({-7,0 }, { -5,9 }, mapData, path);
+	TileMap::AStar::findPath({ -7,0 }, { -5,9 }, mapData, path);
 	for (const auto& coord : path)
 	{
 		std::cout << "\nPath: " << coord;
 	}
 	TileMap::printMap(mapData, path);
-	
+	}
+#pragma endregion
 
 	return(0);
 }

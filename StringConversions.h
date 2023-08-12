@@ -17,8 +17,8 @@ namespace TileMap
 			case TileShape::Square:
 				os << "Square";
 				break;
-			case TileShape::Hexagon:
-				os << "Hexagon";
+			case TileShape::Hex:
+				os << "Hex";
 				break;
 			default:
 				os << "Unknown Shape!";

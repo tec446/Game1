@@ -33,6 +33,18 @@
     <ClCompile Include="StringConversions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MapData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SquareMapData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HexMapData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TileMap.h">
@@ -54,6 +66,15 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="AStar.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SquareMapData.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HexMapData.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MapGenerator.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

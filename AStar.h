@@ -34,12 +34,13 @@ private:
 	struct PathNodeHash;
 	struct PathNodeEqual;
 
-	static void buildPath(std::vector<Coordinates>& path, AStar::PathNode& node);
+	using AStarPriorityQueue = std::priority_queue<PathNode, std::vector<PathNode>, std::greater<PathNode>>;
+	using AStarClosedSet     = std::unordered_set<PathNode, PathNodeHash, PathNodeEqual>;
+	using AStarMap		     = std::vector<std::vector<bool>>;
 
 	// pathNode used for pathfinding
 	struct PathNode
 	{
-		std::unique_ptr<PathNode> parent;
 		float goneCost;
 		float heuristicCost;
 		Coordinates coordinates{};
@@ -49,47 +50,24 @@ private:
 		PathNode(
 			Coordinates coordinates,
 			Direction direction		 = Direction::Direction_None,
-			PathNode* parent		 = nullptr,
 			float goneCost			 = 0,
 			float heuristicCost		 = 0
 		) :
 			coordinates  (coordinates),
 			direction    (direction),
-			parent       (parent ? std::make_unique<PathNode>(*parent) : nullptr),
 			goneCost     (goneCost),
 			heuristicCost(heuristicCost)
 		{
 		}
-		// Deep Copy Constructor
-		PathNode(const PathNode& other) :
-			direction    (other.direction),
-			goneCost     (other.goneCost),
-			heuristicCost(other.heuristicCost),
-			coordinates  (other.coordinates)
-		{
-			if (other.parent) { parent = std::make_unique<PathNode>(*other.parent); }
-			else			  { parent = nullptr; }
-		}
-		// Deep Assignment Operator
-		PathNode& operator=(const PathNode& other)
-		{
-			if (this != &other)
-			{
-				direction     = other.direction;
-				goneCost      = other.goneCost;
-				heuristicCost = other.heuristicCost;
-				coordinates   = other.coordinates;
-				
-				if (other.parent) { parent = std::make_unique<PathNode>(*other.parent); }
-				else			  { parent = nullptr; }
-			}
-			return *this;
-		}
 		// Equality Operator
 		bool operator==(const PathNode& other) const
-		{
-			return coordinates == other.coordinates;
-		}
+		{ return coordinates == other.coordinates; }
+		// Less Than Operator
+		bool operator<(const PathNode& other) const
+		{ return finalCost() < other.finalCost(); }
+		// Greater Than Operator
+		bool operator>(const PathNode& other) const
+		{ return finalCost() > other.finalCost(); }
 		// Total cost calculated on demand to reduce redundancy
 		float finalCost() const
 		{
