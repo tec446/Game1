@@ -8,7 +8,7 @@
 
 #include "Tile.h"
 
-namespace TileMap
+namespace TileMap::ReferenceTables
 {
     enum Direction
     {
@@ -28,7 +28,7 @@ namespace TileMap
         EastNorthEast,
         East,
         EastSouthEast,
-        Direction_None,
+        None,
     };
 
     using DirectionTable = std::vector<std::pair<Direction, Coordinates>>;
@@ -110,6 +110,7 @@ namespace TileMap
     };
     //////////////////////// - Square - ////////////////////////////////////
 #pragma endregion
+<<<<<<< Updated upstream
 #pragma region Hexagon
     ////////////////////////// - Hexagon - /////////////////////////////////
     // Coordinate offsets for each direction on a Hexagon map
@@ -126,25 +127,61 @@ namespace TileMap
     static const std::pair<Direction, Coordinates> HexagonSouthEast {SouthEast, HexagonCoordinatesSouthEast};
     static const std::pair<Direction, Coordinates> HexagonSouthWest {SouthWest, HexagonCoordinatesSouthWest};
     static const std::pair<Direction, Coordinates> HexagonWest      {West,      HexagonCoordinatesWest};
+=======
+#pragma region Hex
+////////////////////////// - Hex - /////////////////////////////////
+// Coordinate offsets for each direction on a Hex map
+    static const Coordinates HexCoordinatesNorthWest { +0, -1 };
+    static const Coordinates HexCoordinatesNorthEast { +1, -1 };
+    static const Coordinates HexCoordinatesEast      { +1, +0 };
+    static const Coordinates HexCoordinatesSouthEast { +0, +1 };
+    static const Coordinates HexCoordinatesSouthWest { -1, +1 };
+    static const Coordinates HexCoordinatesWest      { -1, +0 };
+    // Direction paired with their Offset
+    static const std::pair<Direction, Coordinates> HexNorthWest {NorthWest, HexCoordinatesNorthWest};
+    static const std::pair<Direction, Coordinates> HexNorthEast {NorthEast, HexCoordinatesNorthEast};
+    static const std::pair<Direction, Coordinates> HexEast      {East, HexCoordinatesEast};
+    static const std::pair<Direction, Coordinates> HexSouthEast {SouthEast, HexCoordinatesSouthEast};
+    static const std::pair<Direction, Coordinates> HexSouthWest {SouthWest, HexCoordinatesSouthWest};
+    static const std::pair<Direction, Coordinates> HexWest      {West, HexCoordinatesWest};
+>>>>>>> Stashed changes
     // Container of all directions and their offsets
     static const DirectionTable HexagonDirectionTable
     {
+<<<<<<< Updated upstream
         HexagonNorthWest,
         HexagonNorthEast,
         HexagonEast,
         HexagonSouthWest,
         HexagonSouthEast,
         HexagonWest
+=======
+        HexNorthWest,
+            HexNorthEast,
+            HexEast,
+            HexSouthWest,
+            HexSouthEast,
+            HexWest
+>>>>>>> Stashed changes
     };
     // Single Direction to single Coordinates
     static const OffsetMap HexagonDirectionToCoordinatesMap
     {
+<<<<<<< Updated upstream
         { NorthWest, HexagonCoordinatesNorthWest },
         { NorthEast, HexagonCoordinatesNorthEast },
         { East,      HexagonCoordinatesEast      },
         { SouthEast, HexagonCoordinatesSouthEast },
         { SouthWest, HexagonCoordinatesSouthWest },
         { West,      HexagonCoordinatesWest      }
+=======
+        { NorthWest, HexCoordinatesNorthWest },
+        { NorthEast, HexCoordinatesNorthEast },
+        { East,      HexCoordinatesEast },
+        { SouthEast, HexCoordinatesSouthEast },
+        { SouthWest, HexCoordinatesSouthWest },
+        { West,      HexCoordinatesWest }
+>>>>>>> Stashed changes
     };
     // Single Coordinates to single Direction
     static const DirectionMap HexagonCoordinatesToactiveDirections
@@ -168,4 +205,4 @@ namespace TileMap
     };
     ////////////////////////// - Hexagon - /////////////////////////////////
 #pragma endregion
-}
+} // namespace TileMap::ReferenceTables

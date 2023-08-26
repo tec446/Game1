@@ -52,56 +52,56 @@ namespace TileMap
 			}
 			return os;
 		} // Landscape
-	inline std::ostream& operator<<(std::ostream& os, const Direction& direction)
+	inline std::ostream& operator<<(std::ostream& os, const ReferenceTables::Direction& direction)
 		{
 			switch (direction)
 			{
-			case Direction::SouthEast:
+			case ReferenceTables::Direction::SouthEast:
 				os << "SouthEast";
 				break;
-			case Direction::SouthSouthEast:
+			case ReferenceTables::Direction::SouthSouthEast:
 				os << "SouthSouthEast";
 				break;
-			case Direction::South:
+			case ReferenceTables::Direction::South:
 				os << "South";
 				break;
-			case Direction::SouthSouthWest:
+			case ReferenceTables::Direction::SouthSouthWest:
 				os << "SouthSouthWest";
 				break;
-			case Direction::SouthWest:
+			case ReferenceTables::Direction::SouthWest:
 				os << "SouthWest";
 				break;
-			case Direction::WestSouthWest:
+			case ReferenceTables::Direction::WestSouthWest:
 				os << "WestSouthWest";
 				break;
-			case Direction::West:
+			case ReferenceTables::Direction::West:
 				os << "West";
 				break;
-			case Direction::WestNorthWest:
+			case ReferenceTables::Direction::WestNorthWest:
 				os << "WestNorthWest";
 				break;
-			case Direction::NorthWest:
+			case ReferenceTables::Direction::NorthWest:
 				os << "NorthWest";
 				break;
-			case Direction::NorthNorthWest:
+			case ReferenceTables::Direction::NorthNorthWest:
 				os << "NorthNorthWest";
 				break;
-			case Direction::North:
+			case ReferenceTables::Direction::North:
 				os << "North";
 				break;
-			case Direction::NorthNorthEast:
+			case ReferenceTables::Direction::NorthNorthEast:
 				os << "NorthNorthEast";
 				break;
-			case Direction::NorthEast:
+			case ReferenceTables::Direction::NorthEast:
 				os << "NorthEast";
 				break;
-			case Direction::EastNorthEast:
+			case ReferenceTables::Direction::EastNorthEast:
 				os << "EastNorthEast";
 				break;
-			case Direction::East:
+			case ReferenceTables::Direction::East:
 				os << "East";
 				break;
-			case Direction::EastSouthEast:
+			case ReferenceTables::Direction::EastSouthEast:
 				os << "EastSouthEast";
 				break;
 			default:

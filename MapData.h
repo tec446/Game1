@@ -3,13 +3,19 @@
 #include <stdexcept>
 #include <vector>
 #include <memory>
+<<<<<<< Updated upstream
 #include <optional>
+=======
+#include <unordered_map>
+>>>>>>> Stashed changes
 
 #include "Tile.h"
 #include "ReferenceTables.h"
+#include "PathfinderTypes.h"
 
 namespace TileMap 
 {
+<<<<<<< Updated upstream
 struct MapData;
 
 using Map = std::vector<std::vector<Tile>>;
@@ -63,6 +69,55 @@ struct MapData
 			throw std::runtime_error("Failed to set active tables!");
 		}
 	} // setActiveTables
+=======
+	using MapTiles      = std::vector<std::vector<Tile>>;
+	using MapTilesAStar = std::vector<std::vector<Pathfinder::PathNode>>;
+
+	/// MapData
+	///   Stores the map Tiles
+	///   Stores low resolution maps for pathfinding
+	///   Has functionality for interacting with the maps
+	class MapData // Abstract Base Class
+	{
+	protected:
+		ReferenceTables::DirectionTable	const* m_directionTable{};	// Contains all Directions and Offsets
+		ReferenceTables::NoveltyMap		const* m_noveltyMap{};		// Contains all novel Directions and Offsets after a one tile movement
+		ReferenceTables::OffsetMap		const* m_offsetMap{};		// Direction to Offset
+		ReferenceTables::DirectionMap	const* m_directionMap{};	// Offset to Direction
+		MapTiles  m_tiles{};			
+		TileShape m_tileShape{ TileShape::TileShape_None };
+		int16_t	  m_radius{ 0 };
+
+		void setReferenceTables();
+	public:
+
+		MapData(const TileShape tileShape, const int16_t radius);
+		MapData(const MapData& other);
+		virtual ~MapData() = default;
+
+		MapData& operator=(const MapData& other);
+
+		auto getDirectionTable() const -> const ReferenceTables::DirectionTable&;
+		auto getNoveltyMap()	 const -> const ReferenceTables::NoveltyMap&;
+		auto getOffsetMap()	     const -> const ReferenceTables::OffsetMap&;
+		auto getDirectionMap()   const -> const ReferenceTables::DirectionMap&;
+		auto getTiles()		     const -> const MapTiles&;
+		auto getTileShape()	     const -> const TileShape&;
+		auto getRadius()		 const -> const int16_t;
+
+		void setMap(const MapTiles& map);
+
+		bool hasReferenceTables() const;
+		bool isWalkable(const Coordinates& coordinates) const;
+
+		virtual auto getLowResMap() const -> const std::shared_ptr<const MapData> = 0;
+		virtual auto getTile(const Coordinates& coordinates) const -> const Tile* = 0;
+		virtual void generateLowResMap() = 0;
+		virtual bool isValid(const Coordinates& coordinates) const = 0;
+		virtual int  calcMinMoveCost(const Coordinates& from, const Coordinates& to) const = 0;
+		virtual auto coordinatesToIndices(const Coordinates& coordinates) const -> Coordinates = 0;
+	}; // ^ MapData ^
+>>>>>>> Stashed changes
 
 	bool isValid(const Coordinates coordinates) const
 	{

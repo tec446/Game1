@@ -1,6 +1,6 @@
 #include "ReferenceTables.h"
 
-namespace TileMap
+namespace TileMap::ReferenceTables
 {
 #pragma region getters
     //////////////////////// - Getters - ///////////////////////////////////
@@ -46,4 +46,4 @@ namespace TileMap
     } // getDirection
     //////////////////////// - Getters - ///////////////////////////////////
 #pragma endregion
-} // namespace TileMap
+} // namespace TileMap::ReferenceTables

@@ -17,6 +17,7 @@ namespace TileMap
 
         MapData mapData;
 
+<<<<<<< Updated upstream
         // Load radius, tileShape and tileOrientation
         if (!std::getline(inFile, line)) return std::nullopt;
         mapData.radius = stoi(line.substr(line.find(':') + 1));
@@ -25,6 +26,87 @@ namespace TileMap
 
         int16_t row_number = -mapData.radius;
         while (std::getline(inFile, line))
+=======
+        // Generate mapData of the appropriate type
+        std::unique_ptr<MapData> mapData = generateMapData(tileShape, radius);
+        MapTiles newMap{};
+
+        auto loadSquareMap = [&](MapTiles& newMap) {
+                int16_t row_number = -radius;
+                while (std::getline(inFile, line))
+                {
+                    // removing whitespace from the line
+                    line.erase(std::remove_if(line.begin(), line.end(), isspace), line.end());
+                    // error handling: check if line length equals expected map width
+                    if (line.length() != (radius) * 2 + 1)
+                    {
+                        throw std::runtime_error("Error: MapTiles size does not match the radius specified.");
+                        return nullptr;
+                    }
+
+                    std::vector<Tile> newRow; // Create a new row
+
+                    int16_t column_number = -radius; // start from -radius
+                    for (char c : line)
+                    {
+                        Coordinates coordinates = { column_number, row_number };
+                        if (c == MountainCharacter)
+                        {
+                            newRow.push_back(Tile{ coordinates, Landscape::Mountain });
+                        }
+                        else if (c == GrasslandCharacter)
+                        {
+                            newRow.push_back(Tile{ coordinates, Landscape::Grassland });
+                        }
+
+                        column_number++;
+                    }
+
+                    newMap.push_back(newRow); // Add the new row to the map
+                    row_number++;
+                }
+
+                if (newMap.size() != radius * 2 + 1)
+                {
+                    throw std::runtime_error("Error: MapTiles size does not match the radius specified.");
+                    return nullptr;
+                }
+            }; // ^ loadSquareMap ^
+        auto loadHexMap = [&](MapTiles& newMap) {
+                int16_t row_number = 0;
+                while (std::getline(inFile, line))
+                {
+                    // removing whitespace from the line
+                    line.erase(std::remove_if(line.begin(), line.end(), isspace), line.end());
+
+                    std::vector<Tile> newRow; // Create a new row
+
+                    // start column_number based on row_number to ensure the center is (0,0)
+                    int16_t column_number = 0 - row_number;
+                    if (row_number > radius) column_number += (row_number - radius);
+                    for (char c : line)
+                    {
+                        Coordinates coordinates = { column_number, row_number - radius };
+
+                        if (c == MountainCharacter)
+                        {
+                            newRow.push_back(Tile{ coordinates, Landscape::Mountain });
+                        }
+                        else if (c == GrasslandCharacter)
+                        {
+                            newRow.push_back(Tile{ coordinates, Landscape::Grassland });
+                        }
+
+                        column_number++;
+                    }
+
+                    newMap.push_back(newRow); // Add the new row to the map
+                    row_number++;
+                }
+            }; // ^ loadHexMap ^
+        
+        switch (tileShape)
+>>>>>>> Stashed changes
         {
             // removing whitespace from the line
             line.erase(std::remove_if(line.begin(), line.end(), isspace), line.end());
@@ -59,8 +141,13 @@ namespace TileMap
 
         if (mapData.map.size() != (mapData.radius) * 2 + 1)
         {
+<<<<<<< Updated upstream
             throw std::runtime_error("Error: Map size does not match the radius specified.");
             return std::nullopt;
+=======
+            throw std::runtime_error("Error: MapTiles size does not match the radius specified.");
+            return nullptr;
+>>>>>>> Stashed changes
         }
 
         inFile.close();
@@ -145,7 +232,13 @@ namespace TileMap
     } // printMap
     void printSquareMap(const MapData& mapData, const std::vector<Coordinates>& path)
     {
+<<<<<<< Updated upstream
         std::cout << "\n__" << std::string(mapData.map.size() * 4, '_');
+=======
+        MapTiles map = mapData.getTiles();
+
+        std::cout << "\n__" << std::string(map.size() * 4, '_');
+>>>>>>> Stashed changes
 
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); // Get console handle
 
@@ -183,7 +276,13 @@ namespace TileMap
     } // printSquareMap
     void printHexagonMap(const MapData& mapData, const std::vector<Coordinates>& path)
     {
+<<<<<<< Updated upstream
         std::cout << "\n__" << std::string(mapData.map.size() * 4, '_');
+=======
+        MapTiles map = mapData.getTiles();
+
+        std::cout << "\n__" << std::string(map.size() * 4, '_');
+>>>>>>> Stashed changes
 
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); // Get console handle
 

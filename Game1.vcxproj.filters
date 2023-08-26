@@ -27,12 +27,24 @@
     <ClCompile Include="IO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AStar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StringConversions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< Updated upstream
+=======
+    <ClCompile Include="MapData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SquareMapData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pathfinder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TileMap.h">
@@ -53,7 +65,20 @@
     <ClInclude Include="IO.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+<<<<<<< Updated upstream
     <ClInclude Include="AStar.h">
+=======
+    <ClInclude Include="SquareMapData.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MapGenerator.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PathfinderTypes.h">
+>>>>>>> Stashed changes
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

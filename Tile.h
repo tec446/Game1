@@ -5,11 +5,13 @@
 #include <cstdint>
 #include <vector>
 #include <map>
+#include <array>
 
 namespace TileMap 
 {
-	struct Tile; 
+	class Tile; 
 	struct Coordinates;
+	struct SquareMetaTile;
 
 	enum Landscape
 	{
@@ -38,6 +40,7 @@ namespace TileMap
 #pragma region operatorOverrides
 		// operator overrides
 		// operator + is used to modify Coordinates by an Offset
+<<<<<<< Updated upstream
 		Coordinates operator+(const Coordinates& other) const
 		{
 			return(Coordinates(x + other.x, y + other.y));
@@ -58,6 +61,20 @@ namespace TileMap
 		{
 			return std::tie(x, y) < std::tie(other.x, other.y);
 		} // ^ operator < ^
+=======
+		Coordinates operator+(const Coordinates& other) const	//  + operator +
+		{ return(Coordinates(x + other.x, y + other.y)); }		//  + operator +
+		Coordinates operator-(const Coordinates& other) const	//  - operator -
+		{ return(Coordinates(x - other.x, y - other.y)); }		//  - operator -
+		bool operator==(const Coordinates& other) const			// == operator ==
+		{ return (x == other.x && y == other.y); }				// == operator ==
+		bool operator!=(const Coordinates& other) const			// != operator !=
+		{ return (x != other.x || y != other.y); }				// != operator !=
+		bool operator>(const Coordinates& other) const			//  > operator >
+		{ return std::tie(x, y) > std::tie(other.x, other.y); }	//  > operator >
+		bool operator<(const Coordinates& other) const			//  < operator <
+		{ return std::tie(x, y) < std::tie(other.x, other.y); }	//  < operator <
+>>>>>>> Stashed changes
 #pragma endregion
 	}; // Coordinates
 
@@ -74,21 +91,70 @@ namespace TileMap
 		}
 	}; // HashCoordinates
 
-	struct Tile
+	class Tile
 	{
-		const Coordinates coordinates{};
-		const uint32_t uniqueID{};
+	public:
+		const Coordinates coordinates{}; // const to prevent modification, coordinates are unique		     and should never change
+		const uint32_t uniqueID{};		 // const to prevent modification, uniqueID is a hash of coordinates and should never change
 		Landscape landscape{};
 		// Constructors
 		Tile() = default;
 		Tile(const Coordinates coordinates, Landscape landscape)
 			: coordinates(coordinates), uniqueID(HashCoordinates()(coordinates)), landscape(landscape) {}
+		// Operator Overrides
 		Tile& operator=(const Tile& other) {
 			if (this != &other) {
 				landscape = other.landscape;
 			}
 			return *this;
-		}
+		} // = operator =
+	}; // Tile
+
+	struct SquareMetaTile
+	{
+		Coordinates coordinates{};
+		uint32_t ID{};
+		int16_t internalMinCost{ 10 }; //	one cardinal move
+		int16_t internalMaxCost{ 28 }; // two diagonal moves
+		int16_t goneCost{};
+		int16_t heuristicCost{};
+		int16_t totalCost{};
+		// maybe south-to-north cost?
+		// east-to-west cost?
+		// and so on...
+		// or something
+
+		const Tile* northWest{ nullptr };
+		const Tile* northEast{ nullptr };
+		const Tile* southWest{ nullptr };
+		const Tile* southEast{ nullptr };
+
+		std::array<SquareMetaTile*, 8> neighbors{};
+
+		// Constructors
+		SquareMetaTile() = default;
+
+		///
+		///    NW  N  NE
+		///          
+		///    W   X   E
+		/// 
+		///    SW  S  SE
+		/// 
+		/// NorthWest if(NorthWest != nullptr)
+		/// North     if(NorthWest != nullptr || NorthEast != nullptr)
+		/// NorthEast if(NorthEast != nullptr)
+		/// East      if(NorthEast != nullptr || SouthEast != nullptr)
+		/// SouthEast if(SouthEast != nullptr)
+		/// South     if(SouthEast != nullptr || SouthWest != nullptr)
+		/// SouthWest if(SouthWest != nullptr)
+		/// West      if(SouthWest != nullptr || NorthWest != nullptr)
+		/// 
+		/// sortedCosts = sort(NorthWest, NorthEast, SouthEast, SouthWest)
+		/// internalMinCost = 10 one cardinal move
+		/// internalMaxCost = 28 two diagonal moves
+		/// 
 
 	};
+
 }

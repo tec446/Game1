@@ -6,8 +6,12 @@
 #include <utility>
 
 #include "MapData.h"
+#include "SquareMapData.h"
+//#include "HexMapData.h"
 #include "IO.h"
-#include "AStar.h"
+#include "Pathfinder.h"
+#include "PathfinderTypes.h"
+
 
 namespace TileMap
 {
